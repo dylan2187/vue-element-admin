@@ -24,6 +24,13 @@ const tableRouter = {
       name: 'DragTable',
       meta: { title: 'Drag Table' }
     },
+
+    {
+      path: 'complex-table',
+      component: () => import('@/views/table/complex-table'),
+      name: 'ComplexTable',
+      meta: { title: 'Complex Table' }
+    },
     {
       path: 'inline-edit-table',
       component: () => import('@/views/table/inline-edit-table'),
@@ -31,10 +38,10 @@ const tableRouter = {
       meta: { title: 'Inline Edit' }
     },
     {
-      path: 'complex-table',
-      component: () => import('@/views/table/complex-table'),
-      name: 'ComplexTable',
-      meta: { title: 'Complex Table' }
+      path: 'pig-table',
+      component: () => import('@/views/table/pig-table.vue'),
+      name: 'PigTable',
+      meta: { title: 'Pig Table' }
     }
   ]
 }
