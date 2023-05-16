@@ -1,5 +1,17 @@
 <template>
   <div class="app-container">
+    <div class="filter-container">
+      <el-button
+        class="filter-item"
+        style="margin-left: 10px;"
+        type="primary"
+        icon="el-icon-edit"
+        @click="handleCreate"
+      >
+        添加
+      </el-button>
+    </div>
+
     <el-table
       v-loading="listLoading"
       :data="list"
@@ -72,6 +84,29 @@
         </template>
       </el-table-column>
     </el-table>
+
+    <el-dialog
+      title="添加猪圈数据"
+      :visible.sync="dialogFormVisible"
+    >
+      <el-form
+        ref="dataForm"
+        :model="addForm"
+        label-width="80px"
+      >
+        <el-form-item label="猪圈名称">
+          <el-input v-model="addForm.name" />
+        </el-form-item>
+        <el-form-item>
+          <el-button
+            type="primary"
+            @click="onSubmit"
+          >添加猪圈</el-button>
+          <el-button @click="dialogFormVisible = false">取消</el-button>
+        </el-form-item>
+      </el-form>
+
+    </el-dialog>
   </div>
 </template>
 
@@ -86,8 +121,34 @@ export default {
         cameraInfo: 'test_camera',
         deviceInfo: 'test_device'
       }],
-      listLoading: false
+      listLoading: false,
+      dialogFormVisible: false,
+      addForm: {
+        id: 1,
+        name: '',
+        cameraInfo: '',
+        deviceInfo: ''
+      }
     }
+  },
+  methods: {
+
+    handleCreate() {
+      this.addForm = {
+        id: null,
+        name: '',
+        cameraInfo: '',
+        deviceInfo: ''
+      }
+
+      this.dialogFormVisible = true
+    },
+    onSubmit() {
+      this.addForm.id = parseInt(Math.random() * 100) + 1024
+      this.list.push(this.addForm)
+      this.dialogFormVisible = false
+    }
+
   }
 
 }
